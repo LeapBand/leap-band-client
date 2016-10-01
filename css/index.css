@@ -1,0 +1,19 @@
+body {
+    background-color: #0d0d0d;
+    color: white;
+}
+
+#title {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 120px;
+    text-align: center;
+    display: none;
+}
+
+#subtitle{
+    text-align: center;
+    font-size: 30px;
+    display: none;
+    font-family: "Courier New", Courier, monospace;
+
+}
