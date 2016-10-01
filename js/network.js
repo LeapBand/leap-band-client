@@ -25,3 +25,9 @@ socket.on('play', function(data) {
 socket.on('members_update', function(data) {
 	members = data;
 });
+
+
+//functions called from leap
+var sendInstrumentData(instData) = function(data){
+	socket.emit('play', data);
+};
