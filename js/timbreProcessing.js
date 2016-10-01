@@ -3,18 +3,21 @@
  */
 
 // members
-for (var username in members){
-	if oldMembers.hasOwnProperty(username){
-		// username:instrument
-		if (oldMembers[username] != newMembers[username]){
-
+var updateUserInstruments = function(members, oldMembers){
+	//change instruments
+	for (var username in members){
+		if oldMembers.hasOwnProperty(username){
+			// username:instrument
+			// instrument change for someone
+			if (oldMembers[username] != newMembers[username]){
+				//set instrument
+			}
 		}
 	}
 }
-	
 
 // set instrument
 // set frequency
 // set volume
 
-//play 
+//play test
