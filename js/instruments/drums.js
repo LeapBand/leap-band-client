@@ -6,7 +6,7 @@ class Drums {
 	process(frame) {
 		var _self = this;
 		frame.hands.forEach(function(hand, index) {
-			if (hand.palmVelocity[1] < -400 && !handOnCooldown[hand.id]) {
+			if (hand.palmVelocity[1] < -400 && !this.handOnCooldown[hand.id]) {
 				var handX = hand.palmPosition[0],
 					handZ = hand.palmPosition[2];
 				var data = {
@@ -29,8 +29,8 @@ class Drums {
 					data.type = "tom";
 				}
 
-				sendInstrumentData(data);
-
+				//sendInstrumentData(data);
+				console.log(data);
 				this.toggleCooldown(hand.id);
 				setTimeout(function(){
 					_self.toggleCooldown(hand.id)
