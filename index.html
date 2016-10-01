@@ -6,18 +6,23 @@
     <script src="lib/jquery-3.1.1.js"></script>
     <script src="lib/socket.io.js"></script>
 
-    <script src = "js/index.js"></script>
     <script src = "js/timbreProcessing.js"></script>
     <script src = "js/network.js"></script>
+    <script src = "js/drums.js"></script>
     <script src = "js/instruments.js"></script>
-    <script src = "js/leapProcessing.js"></script>
+    <script src = "js/index.js"></script>
+    <link rel="stylesheet" href="css/index.css">
 
 
 </head>
 <body>
+    <div id = "title">Leap Band</div>
+    <div id = "subtitle">Move your hands over the leap motion, and start playing.</div>
 <script>
     $( document ).ready(function() {
         console.log( "ready!" );
+        $("#title").delay(1000).fadeIn(400);
+        $("#subtitle").delay(2000).fadeIn(500);
     });
 </script>
 </body>
