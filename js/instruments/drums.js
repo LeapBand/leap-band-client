@@ -4,6 +4,7 @@ class Drums {
 	}
 
 	process(frame) {
+		var _self = this;
 		frame.hands.forEach(function(hand, index) {
 			if (hand.palmVelocity[1] < -400 && !handOnCooldown[hand.id]) {
 				var handX = hand.palmPosition[0],
@@ -30,9 +31,9 @@ class Drums {
 
 				sendInstrumentData(data);
 
-				toggleCooldown(hand.id);
+				this.toggleCooldown(hand.id);
 				setTimeout(function(){
-					toggleCooldown(hand.id)
+					_self.toggleCooldown(hand.id)
 				}, 250);
 			}
 
@@ -44,6 +45,6 @@ class Drums {
 	}
 
 	toggleCooldown(hand) {
-		handOnCooldown[hand] = !handOnCooldown[hand];
+		this.handOnCooldown[hand] = !this.handOnCooldown[hand];
 	}
 }
