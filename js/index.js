@@ -1,3 +1,9 @@
-/**
- * Created by cferrier on 10/1/2016.
- */
+var instruments = new Instruments();
+
+Leap.loop(function(frame){
+
+    frame.hands.forEach(function(hand, index) {
+        instruments[0].process(hand, index);
+    });
+
+});
