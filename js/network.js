@@ -4,15 +4,13 @@
  * 
  */
 var socket = io('http://localhost:3000');
-
-// client instrument dictionary
-
 var members = {};
-// sending info
+// client instrument dictionary
 
 // changing instrument
 var changeInstrument = function(instName){
-	socket.emit('update_member', {username: username, instrument: instName});
+	socket.emit('update_member', 
+		{username: username, instrument: instName});
 };
 // play note
 var sendInstrumentData = function(data){
@@ -22,13 +20,16 @@ var sendInstrumentData = function(data){
 
 // taking info
 socket.on('play', function(data) {
-	console.log(data);
+	members[data.id].instrument.play(data.data);
 });
 
-// update the members
-socket.on('members_update', function(data) {
-	members = data;
-	updateMemberInstruments(members, oldMembers)
+// update the member
+socket.on('member_updated', function(data) {
+	updateMember(data);
 });
 
+// member left
+socket.on('member_left', function(data) {
+	memberLeft(data);
+});
 

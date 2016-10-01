@@ -2,19 +2,18 @@
  * Created by cferrier on 10/1/2016.
  */
 
-// members
-var updateUserInstruments = function(members, oldMembers){
-	//change instruments
-	for (var username in members){
-		if oldMembers.hasOwnProperty(username){
-			// username:instrument
-			// instrument change for someone
-			if (oldMembers[username] != newMembers[username]){
-				//set instrument
-			}
-		}
+// update member
+var updateMember = function(member){
+	// new member
+	members[member.id] = member.data;
+};
+
+// remove member
+var memberLeft = function(member){
+	if(members.hasOwnProperty(member.id)){
+		delete members[member.id];
 	}
-}
+};
 
 // set instrument
 // set frequency
