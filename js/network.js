@@ -10,11 +10,15 @@ var socket = io('http://localhost:3000');
 var members = {};
 // sending info
 
-//use this when changing instrument
-socket.emit('update_member',{username:username, instrument:inst});
-
-//whatever client needs to play music
-socket.emit('play',{});
+// changing instrument
+var changeInstrument = function(instName){
+	socket.emit('update_member', {username: username, instrument: instName});
+};
+// play note
+var sendInstrumentData = function(data){
+	data.username = username;
+	socket.emit('play', data);
+};
 
 // taking info
 socket.on('play', function(data) {
@@ -24,10 +28,7 @@ socket.on('play', function(data) {
 // update the members
 socket.on('members_update', function(data) {
 	members = data;
+	updateMemberInstruments(members, oldMembers)
 });
 
 
-//functions called from leap
-function sendInstrumentData(instData){
-	socket.emit('play', instData);
-}
