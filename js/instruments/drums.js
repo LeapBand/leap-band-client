@@ -10,7 +10,7 @@ class Drums {
 	}
 
 	process(frame) {
-		frame.hands.forEach(function(hand, index) {
+		frame.hands.forEach((hand, index) => {
 			if (hand.palmVelocity[1] < -400 && !this.handOnCooldown[hand.id]) {
 				var handX = hand.palmPosition[0],
 					handZ = hand.palmPosition[2];
