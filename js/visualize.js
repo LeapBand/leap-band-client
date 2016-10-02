@@ -1,5 +1,7 @@
 var drawCircle;
 
+var showInstrument;
+
 $( document ).ready(function() {
     var $title = $("#title"),
         $subtitle = $("#subtitle");
@@ -59,6 +61,10 @@ $( document ).ready(function() {
         console.log("Drawing at X: " + x + " and Y: " + y);
         var circle =new Circle(x, y, config);
         circle.draw();
+    }
+
+    showInstrument = function(instrumentName){
+        $("#notifications").html(instrumentName).show().fadeOut(2000);
     }
 
 });
