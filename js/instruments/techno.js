@@ -54,5 +54,8 @@ class Techno {
 			this.first = false;
 		}
 		this.audio.play({pitch: data.freq});
+
+		var drawConfig = {color: "#F81E1E", fill: false, concentric: true};
+		drawCircle(drawConfig);
 	}
 }

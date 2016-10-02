@@ -49,5 +49,8 @@ class Guitar {
 		console.log("Playing");
 		this.audio.string.play({
 		});
+
+		var drawConfig = {color: "#CE3424", fill: false, concentric: true};
+		drawCircle(drawConfig);
 	}
 }
