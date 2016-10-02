@@ -1,14 +1,15 @@
 class Drums {
-	constructor() {
+	constructor(socket) {
+		this.socket = socket;
 		this.handOnCooldown = {};
 		this.tom = T("audio", {load:"/data/lowTom.mp3"});
-		this.hiHat = T("audio", {load:"/data/hiHitom.mp3"});
+		this.hiHat = T("audio", {load:"/data/hiHat.mp3"});
 		this.kick = T("audio", {load:"/data/kick.mp3"});
 		this.snare = T("audio", {load:"/data/snare.mp3"});
+		console.log("Creating drums");
 	}
 
 	process(frame) {
-		var _self = this;
 		frame.hands.forEach(function(hand, index) {
 			if (hand.palmVelocity[1] < -400 && !this.handOnCooldown[hand.id]) {
 				var handX = hand.palmPosition[0],
@@ -36,11 +37,10 @@ class Drums {
 				//sendInstrumentData(data);
 				console.log(data);
 				this.toggleCooldown(hand.id);
-				setTimeout(function(){
-					_self.toggleCooldown(hand.id)
+				setTimeout(() => {
+					toggleCooldown(hand.id)
 				}, 250);
 			}
-
 		});
 	}
 
