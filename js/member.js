@@ -5,17 +5,17 @@ class Member {
 			drums: Drums,
 			piano: Piano,
 			guitar: Guitar,
-			blues: Blues, 
+			blues: Blues,
 			techno: Techno
 		};
 
 		this.swapCooldown = false;
 
 		this.instrumentNames = [
-			'drums',
-			'piano',
-			'guitar',
 			'techno',
+			'piano',
+			'drums',
+			'guitar',
 			'blues'
 		];
 		this.instrumentId = 0;
@@ -33,10 +33,10 @@ class Member {
 			wristRotation1 = scale(0, Math.PI, 0, 360, wristRotation1);
 			wristRotation2 = scale(0, Math.PI, 0, 360, wristRotation2);
 
-			console.log(wristRotation1 + " " + wristRotation2);
+			// console.log(wristRotation1 + " " + wristRotation2);
 			if (wristRotation1 > 150 && wristRotation2 > 150)
 			{
-				console.log("here");
+				// console.log("here");
 				this.toggleCooldown();
 				setTimeout(() => {
 					this.toggleCooldown();

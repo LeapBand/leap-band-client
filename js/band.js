@@ -32,19 +32,19 @@ class Band {
 	}
 
 	updateMember(memberData) {
-		console.log('updateMember()');
-		console.log(memberData);
+		// console.log('updateMember()');
+		// console.log(memberData);
 
 		if (!(memberData.id in this.members)) {
 			this.members[memberData.id] = new Member(socket, memberData.data);
-			console.log('Adding new member');
+			// console.log('Adding new member');
 		}
 		let changed = this.members[memberData.id].update(memberData.data);
 		if (changed && memberData.id == this.myId && this.instrumentChanged) {
 			this.instrumentChanged(this.members[memberData.id].getInstrumentName());
 		}
 
-		console.log(this.members);
+		// console.log(this.members);
 	}
 
 	removeMember(memberData) {

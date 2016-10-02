@@ -9,7 +9,7 @@ class Drums {
 		};
 		this.alreadyPlayed = {};
 
-		console.log("Creating drums");
+		// console.log("Creating drums");
 	}
 
 	determineDrumType(handX, handZ) {
@@ -51,7 +51,7 @@ class Drums {
 			}
 			if (this.alreadyPlayed[index] && hand.palmVelocity[1] > 20) {
 				this.alreadyPlayed[index] = false;
-				console.log('reset');
+				// console.log('reset');
 			}
 		});
 	}
@@ -59,7 +59,7 @@ class Drums {
 	play(data) {
 		this.audio[data.type].play();
 
-		var drawConfig = {color: "#006699"};
+		var drawConfig = {color: "#00FF00", fill: true};
 		drawCircle(drawConfig);
 	}
 }

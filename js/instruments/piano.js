@@ -14,7 +14,7 @@ class Piano {
 		});
 
 		this.alreadyPlayed = {};
-		console.log("creating piano");
+		// console.log("creating piano");
 	}
 
 	process(frame) {
@@ -99,7 +99,7 @@ class Piano {
 
 			if (this.alreadyPlayed[index] && hand.palmVelocity[1] > 20) {
 				this.alreadyPlayed[index] = false;
-				console.log('reset');
+				// console.log('reset');
 			}
 		}
 	)};
@@ -111,7 +111,7 @@ class Piano {
 
 		// red circle
 		var drawConfig = {
-			color: "#990000",
+			color: "#FFFFFF",
 			fill: true
 		};
 		drawCircle(drawConfig);

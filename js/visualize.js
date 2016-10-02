@@ -21,6 +21,8 @@ $( document ).ready(function() {
         width =  $(document.body).width();
         canvas.width = width;
         canvas. height = height;
+        let ctx = canvas.getContext("2d");
+        ctx.lineWidth = 8;
     });
 
     canvas.width = width;
@@ -36,6 +38,7 @@ $( document ).ready(function() {
 
 
         this.draw = function() {
+            config.color = config.color || '#FFFFFF';
             ctx.beginPath();
             ctx.arc(x, y, i-2,0 , 2*Math.PI, false);
             var track = i/3;
@@ -45,7 +48,7 @@ $( document ).ready(function() {
             }
             else
             {
-                ctx.strokeStyle = '#FFFFFF';
+                ctx.strokeStyle = config.color;
                 ctx.stroke();
             }
             i -= config.rate || 1;
@@ -69,7 +72,7 @@ $( document ).ready(function() {
 
         var x = Math.floor(Math.random() * width);
         var y = Math.floor(Math.random() * height);
-        console.log("Drawing at X: " + x + " and Y: " + y);
+        // console.log("Drawing at X: " + x + " and Y: " + y);
         if (Object.keys(circles).length < 15){
             var circle = new Circle(x, y, config);
             circle.draw();

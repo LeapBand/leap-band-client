@@ -13,7 +13,7 @@ class Techno {
 
 		this.audio = new Wad({
 			source  : 'square',
-			volume  : 1.0,   // Peak volume can range from 0 to an arbitrarily high number, but you probably shouldn't set it higher than 1.
+			volume  : 0.8,   // Peak volume can range from 0 to an arbitrarily high number, but you probably shouldn't set it higher than 1.
 			loop    : false, // If true, the audio will loop. This parameter only works for audio clips, and does nothing for oscillators.
 			pitch   : 'A4',  // Set a default pitch on the constuctor if you don't want to set the pitch on play().
 			detune  : 0,     // Set a default detune on the constructor if you don't want to set detune on play(). Detune is measured in cents. 100 cents is equal to 1 semitone.
@@ -85,9 +85,8 @@ class Techno {
 		});
 
 		var drawConfig = {
-			color: "#F81E1E",
+			color: "#FFFF00",
 			fill: false,
-			concentric: true,
 			rate: data.rate
 		};
 		drawCircle(drawConfig);

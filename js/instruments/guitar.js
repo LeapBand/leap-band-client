@@ -71,7 +71,7 @@ class Guitar {
 
 	process(frame) {
 		let playing = false;
-		console.log("Processing hands ");
+		// console.log("Processing hands ");
 		let playData = {
 			notes: [
 				// {
@@ -90,10 +90,10 @@ class Guitar {
 			var type = hand.type;
 			if(type == "left") {
 				let yPos = hand.palmPosition[1];
-				
+
 				let index = this.convertYToIndex(yPos, 8, 50, 400);
-				console.log("Ypos " + yPos);
-				console.log("Adding " + this.keys[this.currentKey].scales.major[index]);
+				// console.log("Ypos " + yPos);
+				// console.log("Adding " + this.keys[this.currentKey].scales.major[index]);
 				playData.notes.push({
 					pitch: this.keys[this.currentKey].scales.major[index]
 				});
@@ -113,10 +113,10 @@ class Guitar {
 	}
 
 	play(playData) {
-		console.log(playData);
+		// console.log(playData);
 		this.audio.string.stop('lastPlayed');
 		playData.notes.forEach((note, index) => {
-			console.log('Playing ' + note.pitch);
+			// console.log('Playing ' + note.pitch);
 			this.audio.string.play({
 				pitch: note.pitch,
 				label: 'lastPlayed'
@@ -130,13 +130,13 @@ class Guitar {
 	convertYToIndex(yPos, arraySize, minY, maxY) {
 		let intervalSize = (maxY - minY) / arraySize;
 		let index = Math.floor(((yPos / intervalSize))) % arraySize;
-		console.log("Calculated index1 " + index);
+		// console.log("Calculated index1 " + index);
 		if (yPos < minY) {
 			index = 0;
 		} else if (yPos > maxY) {
 			index = arraySize - 1;
 		}
-		console.log("Calculated index2 " + index);
+		// console.log("Calculated index2 " + index);
 		return index;
 	}
 }

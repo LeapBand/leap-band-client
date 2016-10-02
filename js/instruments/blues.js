@@ -14,55 +14,30 @@ class Blues{
 		];
 		this.socket = socket;
 		this.audio = {
-			lead: new Wad({
-				source: 'sine',
-				env     : {      // This is the ADSR envelope.
-					attack  : 0.1,  // Time in seconds from onset to peak volume.  Common values for oscillators may range from 0.05 to 0.3.
-					decay   : 0.1,  // Time in seconds from peak volume to sustain volume.
-					sustain : 0.3,  // Sustain volume level. This is a percent of the peak volume, so sensible values are between 0 and 1.
-					hold    : 0.1, // Time in seconds to maintain the sustain volume level. If this is not set to a lower value, oscillators must be manually stopped by calling their stop() method.
-					release : 0.1     // Time in seconds from the end of the hold period to zero volume, or from calling stop() to zero volume.
-				}
-			}),
-			root: new Wad({
-				source: 'sine',
-				env     : {      // This is the ADSR envelope.
-					attack  : 0.1,  // Time in seconds from onset to peak volume.  Common values for oscillators may range from 0.05 to 0.3.
-					decay   : 0.1,  // Time in seconds from peak volume to sustain volume.
-					sustain : 0.3,  // Sustain volume level. This is a percent of the peak volume, so sensible values are between 0 and 1.
-					hold    : 0.1, // Time in seconds to maintain the sustain volume level. If this is not set to a lower value, oscillators must be manually stopped by calling their stop() method.
-					release : 0.1     // Time in seconds from the end of the hold period to zero volume, or from calling stop() to zero volume.
-				},
-				volume: 0.3
-			}),
-			third: new Wad({
-				source: 'sine',
-				env     : {      // This is the ADSR envelope.
-					attack  : 0.1,  // Time in seconds from onset to peak volume.  Common values for oscillators may range from 0.05 to 0.3.
-					decay   : 0.1,  // Time in seconds from peak volume to sustain volume.
-					sustain : 0.3,  // Sustain volume level. This is a percent of the peak volume, so sensible values are between 0 and 1.
-					hold    : 0.1, // Time in seconds to maintain the sustain volume level. If this is not set to a lower value, oscillators must be manually stopped by calling their stop() method.
-					release : 0.1     // Time in seconds from the end of the hold period to zero volume, or from calling stop() to zero volume.
-				},
-				volume: 0.3
-			}),
-			fifth: new Wad({
-				source: 'sine',
-				env     : {      // This is the ADSR envelope.
-					attack  : 0.1,  // Time in seconds from onset to peak volume.  Common values for oscillators may range from 0.05 to 0.3.
-					decay   : 0.1,  // Time in seconds from peak volume to sustain volume.
-					sustain : 0.3,  // Sustain volume level. This is a percent of the peak volume, so sensible values are between 0 and 1.
-					hold    : 0.1, // Time in seconds to maintain the sustain volume level. If this is not set to a lower value, oscillators must be manually stopped by calling their stop() method.
-					release : 0.1     // Time in seconds from the end of the hold period to zero volume, or from calling stop() to zero volume.
-				},
-				volume: 0.3
-			})
+			lead: this.makeWadObject(2.0),
+			root: this.makeWadObject(),
+			third: this.makeWadObject(),
+			fifth: this.makeWadObject()
 		};
 		this.first1 = true;
 		this.first2 = true;
 		this.lastTime = Date.now();
 
-		console.log("Blues created");
+		// console.log("Blues created");
+	}
+
+	makeWadObject(volume) {
+		return new Wad({
+			source: 'sine',
+			env     : {      // This is the ADSR envelope.
+				attack  : 0.1,  // Time in seconds from onset to peak volume.  Common values for oscillators may range from 0.05 to 0.3.
+				decay   : 0.1,  // Time in seconds from peak volume to sustain volume.
+				sustain : 0.3,  // Sustain volume level. This is a percent of the peak volume, so sensible values are between 0 and 1.
+				hold    : 0.1, // Time in seconds to maintain the sustain volume level. If this is not set to a lower value, oscillators must be manually stopped by calling their stop() method.
+				release : 0.1     // Time in seconds from the end of the hold period to zero volume, or from calling stop() to zero volume.
+			},
+			volume: volume || 1.0
+		});
 	}
 
 	process(frame) {
@@ -93,7 +68,7 @@ class Blues{
 						data.third = "D#4";
 						data.fifth = "F#4";
 					}
-					
+
 					if(lhX < 0 ){
 						this.socket.emit('play', data);
 					}
@@ -136,7 +111,6 @@ class Blues{
 			this.audio.fifth.play({pitch: data.fifth});
 		}
 
-		var drawConfig = {color: "#006699"};
 		var drawConfig = {
 			color: "#0000CD",
 			fill: false,
