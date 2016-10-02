@@ -10,6 +10,14 @@ function averageFingerDistance(fingers) {
 	return sumDistances / (fingers.length - 1);
 }
 
+function clamp(min, max, value) {
+	if (value < min)
+		value = min;
+	if (value > max)
+		value = max;
+	return value;
+}
+
 // E.g.: scale(50, 400, 0, 800, 217)
 //		=> ~400
 // Note: Input values out of range will be clamped to their boundaries
