@@ -34,8 +34,7 @@ class Drums {
 					data.type = "tom";
 				}
 
-				//sendInstrumentData(data);
-				console.log(data);
+				this.socket.emit('play', data);
 				this.toggleCooldown(hand.id);
 				setTimeout(() => {
 					this.toggleCooldown(hand.id)

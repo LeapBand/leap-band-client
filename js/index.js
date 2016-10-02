@@ -5,6 +5,7 @@ var myId = undefined;
 
 // taking info
 socket.on('play', function(data) {
+	console.log(data);
 	band.play(data);
 });
 
@@ -35,5 +36,3 @@ socket.emit('update_member', {
 Leap.loop(function(frame) {
 	proc.call(band, frame, myId);
 });
-
-

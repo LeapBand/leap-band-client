@@ -55,8 +55,7 @@ class Drums {
 					data.freq = 493.883
 				}
 
-				//sendInstrumentData(data);
-				console.log(data);
+				this.socket.emit('play', data);
 				this.toggleCooldown(hand.id);
 				setTimeout(function(){
 					_self.toggleCooldown(hand.id)
