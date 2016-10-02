@@ -27,7 +27,7 @@ socket.on('member_left', function(data) {
 
 socket.emit('update_member', {
 	username: 'testuser',
-	instrumentName: 'drums'
+	instrumentName: 'piano'
 });
 
 band.watchInstrument(function(name) {
