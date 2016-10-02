@@ -57,6 +57,9 @@ class Drums {
 		else if(data.type === "hiHat"){
 			this.hiHat.play();
 		}
+
+		var drawConfig = {color: "#006699"};
+		drawCircle(drawConfig);
 	}
 
 	toggleCooldown(hand) {

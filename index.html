@@ -7,6 +7,7 @@
     <script src="lib/socket.io.js"></script>
 
     <script src = "js/instruments/drums.js"></script>
+    <script src = "js/visualize.js"></script>
     <script src = "js/member.js"></script>
     <script src = "js/band.js"></script>
     <script src = "js/index.js"></script>
@@ -17,12 +18,12 @@
 <body>
     <div id = "title">Leap Band</div>
     <div id = "subtitle">Move your hands over the leap motion, and start playing.</div>
+    <div id = "container">
+        <canvas id ="displayArea"></canvas>
+    </div>
 <script>
-    $( document ).ready(function() {
-        console.log( "ready!" );
-        $("#title").delay(1000).fadeIn(400);
-        $("#subtitle").delay(2000).fadeIn(500);
-    });
+
+
 </script>
 </body>
 </html>

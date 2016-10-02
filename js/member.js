@@ -25,6 +25,7 @@ class Member {
 
 	play(instrumentData) {
 		this.memberData.instrument.play(instrumentData);
+
 	}
 
 	update(memberData) {
