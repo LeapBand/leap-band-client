@@ -83,7 +83,7 @@ $( document ).ready(function() {
     };
 
     showInstrument = function(instrumentName){
-        $("#notifications").html(instrumentName).show().fadeOut(2000);
+        $("#notifications").html(instrumentName).show().fadeOut(1000);
     }
 
 });
