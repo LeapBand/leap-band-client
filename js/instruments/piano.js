@@ -18,9 +18,9 @@ class Piano {
 	}
 
 	process(frame) {
-		
+
 		frame.hands.forEach((hand, index) => {
-			
+
 			var handX = hand.palmPosition[0],
 				handZ = hand.palmPosition[2];
 			if(!this.alreadyPlayed[index] && hand.palmVelocity[1] < -200){
@@ -71,7 +71,7 @@ class Piano {
 				}
 				else if (handX < 60) {
 					data.freq = 293.665
-				}				
+				}
 				else if (handX < 80) {
 					data.freq = 311.127
 				}
@@ -80,7 +80,7 @@ class Piano {
 				}
 				else if (handX < 120) {
 					data.freq = 349.228
-				}	
+				}
 				else if (handX < 140) {
 					data.freq = 369.994
 				}
@@ -89,29 +89,28 @@ class Piano {
 				}
 				else if (handX < 180) {
 					data.freq = 415.305
-				}	
+				}
 				else if (handX < 200) {
 					data.freq = 440.000
-				}																						
+				}
 				this.socket.emit('play', data);
 				this.alreadyPlayed[index] = true;
-					
-				// red circle
-				var drawConfig = {color: "#990000"};
-					drawCircle(drawConfig);
 			}
-				
+
 			if (this.alreadyPlayed[index] && hand.palmVelocity[1] > 20) {
 				this.alreadyPlayed[index] = false;
 				console.log('reset');
 			}
-		}	
+		}
 	)};
 
 	play(data) {
-
 		// this.audio.volume = data.volume;
 		this.audio.play({pitch: data.freq});
 		// this.audio.stop();
+
+		// red circle
+		var drawConfig = {color: "#990000"};
+		drawCircle(drawConfig);
 	}
 }
