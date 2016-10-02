@@ -40,7 +40,7 @@ class Guitar {
 				},
 			})
 		};
-		this.currentKey = 'C';
+		this.currentKey = 'Em';
 		this.keys = {
 			C: {
 				scales: {
@@ -64,6 +64,26 @@ class Guitar {
 						'B3',
 						'C3'
 					],
+				}
+			},
+			Em: {
+				scales: {
+					minor: [
+						"E2",
+						"G2",
+						"Bb2",
+						"B2",
+						"D3",
+						"E3",
+						"G3",
+						"Bb3",
+						"B3",
+						"D4",
+						"E4",
+						"G4",
+						"Bb4",
+						"B4"
+					]
 				}
 			}
 		};
@@ -91,11 +111,13 @@ class Guitar {
 			if(type == "left") {
 				let yPos = hand.palmPosition[1];
 
-				let index = this.convertYToIndex(yPos, 8, 50, 400);
+				// let index = this.convertYToIndex(yPos, 14, 50, 500);
+				let currentScale = this.keys[this.currentKey].scales.minor;
+				let index = Math.floor(scale(80, 400, 0, currentScale.length - 1, yPos));
 				// console.log("Ypos " + yPos);
 				// console.log("Adding " + this.keys[this.currentKey].scales.major[index]);
 				playData.notes.push({
-					pitch: this.keys[this.currentKey].scales.major[index]
+					pitch: currentScale[index]
 				});
 
 			} else {
