@@ -2,67 +2,65 @@ class Drums {
 	constructor(socket) {
 		this.socket = socket;
 		this.handOnCooldown = {};
-		this.tom = new Wad({source : './data/lowTom.wav'});
-		this.hiHat = new Wad({source : './data/hiHat.wav'});
-		this.kick = new Wad({source : './data/kick.wav'});
-		this.snare = new Wad({source : './data/snare.wav'});
+		this.audio = {
+			tom: new Wad({source: './data/lowTom.wav'}),
+			hiHat: new Wad({source: './data/hiHat.wav'}),
+			kick: new Wad({source: './data/kick.wav'}),
+			snare: new Wad({source: './data/snare.wav'})
+		};
+		this.alreadyPlayed = {};
 
 		console.log("Creating drums");
 	}
 
+	determineDrumType(handX, handZ) {
+		let type = '';
+		if (handX > 0 && handZ > 0) {
+			// Bottom right drum
+			type = "kick";
+		}
+		else if (handX > 0 && handZ < 0) {
+			// Top right drum
+			type = "hiHat";
+		}
+		else if (handX < 0 && handZ > 0) {
+			// Bottom left drum
+			type = "snare";
+		}
+		else if (handX < 0 && handZ < 0) {
+			// Top left drum
+			type = "tom";
+		}
+		return type;
+	}
+
 	process(frame) {
 		frame.hands.forEach((hand, index) => {
-			if (hand.palmVelocity[1] < -400 && !this.handOnCooldown[hand.id]) {
-				var handX = hand.palmPosition[0],
-					handZ = hand.palmPosition[2];
+			var drumPoint = 250;
+			var handX = hand.palmPosition[0],
+				handY = hand.palmPosition[1],
+				handZ = hand.palmPosition[2];
+			if (!this.alreadyPlayed[index] && hand.palmVelocity[1] < -400 && handY < drumPoint) {
 				var data = {
-					instrument: "drums",
-					volume: hand.palmVelocity[1]
+					instrument: 'drums',
+					volume: hand.palmVelocity[1],
+					type: this.determineDrumType(handX, handZ)
 				};
-				if (handX > 0 && handZ > 0){
-						//bottom right
-						data.type = "kick";
-				}
-				else if (handX > 0 && handZ < 0){
-						data.type = "hiHat";
-				}
-				else if (handX < 0 && handZ > 0){
-					//Bottom Left Drum
-					data.type = "snare";
-				}
-				else if (handX < 0 && handZ < 0){
-					//Top Left Drum
-					data.type = "tom";
-				}
 
 				this.socket.emit('play', data);
-				this.toggleCooldown(hand.id);
-				setTimeout(() => {
-					this.toggleCooldown(hand.id)
-				}, 250);
+				this.alreadyPlayed[index] = true;
+
+				var drawConfig = {color: "#006699"};
+				drawCircle(drawConfig);
+			}
+			if (this.alreadyPlayed[index] && handY >= drumPoint) {
+				this.alreadyPlayed[index] = false;
+				console.log('reset');
 			}
 		});
 	}
 
 	play(data) {
-		if(data.type === "kick"){
-			this.kick.play();
-		}
-		else if(data.type === "tom"){
-			this.tom.play();
-		}
-		else if(data.type === "snare"){
-			this.snare.play();
-		}
-		else if(data.type === "hiHat"){
-			this.hiHat.play();
-		}
-
-		var drawConfig = {color: "#006699"};
-		drawCircle(drawConfig);
-	}
-
-	toggleCooldown(hand) {
-		this.handOnCooldown[hand] = !this.handOnCooldown[hand];
+		this.audio[data.type].play();
 	}
 }
