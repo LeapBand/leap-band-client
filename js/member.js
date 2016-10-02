@@ -1,0 +1,41 @@
+class Member {
+	constructor(socket, data) {
+		this.socket = socket;
+		this.instruments = {
+			drums: Drums
+			// piano: Piano,
+			// guitar: Guitar,
+		};
+
+		this.instrumentOrder = [
+			'drums',
+			'piano',
+			'guitar'
+		];
+
+		// this.username = '';
+		// this.instrumentName = '';
+		// this.instrument = null;
+		this.memberData = data;
+	}
+
+	process(frame) {
+		this.memberData.instrument.process(frame);
+	}
+
+	play(instrumentData) {
+		this.memberData.instrument.play(instrumentData);
+	}
+
+	update(memberData) {
+		this.memberData = memberData;
+		this.changeInstrument(memberData.instrumentName);
+	}
+
+	changeInstrument(instrumentName) {
+		if (instrumentName in this.instruments && (!('instrument' in this.memberData) || instrumentName !== this.memberData.instrument.name)) {
+			this.memberData.instrument = new this.instruments[instrumentName](socket);
+			this.memberData.instrument.name = instrumentName;
+		}
+	}
+}
