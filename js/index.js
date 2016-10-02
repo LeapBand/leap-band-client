@@ -1,5 +1,6 @@
+//var socket = io('http://130.85.245.80:3000');
 var socket = io('http://localhost:3000');
-
+//eric 130.85.245.80
 var band = new Band(socket);
 
 // taking info

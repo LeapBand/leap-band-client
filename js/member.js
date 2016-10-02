@@ -5,6 +5,7 @@ class Member {
 			drums: Drums,
 			piano: Piano,
 			guitar: Guitar,
+			blues: Blues, 
 			techno: Techno
 		};
 
@@ -14,7 +15,8 @@ class Member {
 			'drums',
 			'piano',
 			'guitar',
-			'techno'
+			'techno',
+			'blues'
 		];
 		this.instrumentId = 0;
 
