@@ -36,11 +36,10 @@ class Drums {
 
 	process(frame) {
 		frame.hands.forEach((hand, index) => {
-			var drumPoint = 250;
 			var handX = hand.palmPosition[0],
 				handY = hand.palmPosition[1],
 				handZ = hand.palmPosition[2];
-			if (!this.alreadyPlayed[index] && hand.palmVelocity[1] < -100 && handY < drumPoint) {
+			if (!this.alreadyPlayed[index] && hand.palmVelocity[1] < -200) {
 				var data = {
 					instrument: 'drums',
 					volume: hand.palmVelocity[1],
@@ -53,7 +52,7 @@ class Drums {
 				var drawConfig = {color: "#006699"};
 				drawCircle(drawConfig);
 			}
-			if (this.alreadyPlayed[index] && handY >= drumPoint) {
+			if (this.alreadyPlayed[index] && hand.palmVelocity[1] > 20) {
 				this.alreadyPlayed[index] = false;
 				console.log('reset');
 			}
