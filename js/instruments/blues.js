@@ -10,7 +10,11 @@ class Blues{
 			"G4",
 			"Bb4",
 			"B4",
-			"D5"
+			"D5",
+			"E5",
+			"G5",
+			"Bb5",
+			"B5"
 		];
 		this.socket = socket;
 		this.audio = {
@@ -83,14 +87,11 @@ class Blues{
 					var handX = hand.palmPosition[0],
 						handY = hand.palmPosition[1],
 						handZ = hand.palmPosition[2];
-					handY = Math.min(600, handY);
-					handY = Math.max(200, handY);
-					var bucket = Math.floor(0.025 * handY - 5);
+
+					let bucket = Math.floor(scale(80, 400, 0, this.bluesScale.length - 1, handY));
 					data.leadNote = this.bluesScale[bucket];
 					this.socket.emit('play', data);
-
 				}
-
 			}
 		});
 	}
