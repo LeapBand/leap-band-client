@@ -48,8 +48,6 @@ class Drums {
 				this.socket.emit('play', data);
 				this.alreadyPlayed[index] = true;
 
-				var drawConfig = {color: "#006699"};
-				drawCircle(drawConfig);
 			}
 			if (this.alreadyPlayed[index] && hand.palmVelocity[1] > 20) {
 				this.alreadyPlayed[index] = false;
@@ -60,5 +58,8 @@ class Drums {
 
 	play(data) {
 		this.audio[data.type].play();
+
+		var drawConfig = {color: "#006699"};
+		drawCircle(drawConfig);
 	}
 }
