@@ -1,0 +1,34 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #0d0d0d;
+    color: white;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+#title {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 120px;
+    text-align: center;
+    display: none;
+}
+
+#subtitle{
+    text-align: center;
+    font-size: 30px;
+    display: none;
+    font-family: "Courier New", Courier, monospace;
+
+}
+
+#notifications{
+    text-align: center;
+    font-size: 90px;
+    display: none;
+}
+
