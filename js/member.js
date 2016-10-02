@@ -28,27 +28,29 @@ class Member {
 		this.memberData.instrument.process(frame);
 		if (frame.hands.length == 2 && !this.swapCooldown)
 		{
-			if (Math.abs(frame.hands[0].palmPosition[0] - frame.hands[1].palmPosition[0])< 150){
-				if (frame.hands[0].palmVelocity[0] > 800 && frame.hands[0].palmVelocity[0] > 800){
-					console.log("Swiped right");
-					this.toggleCooldown();
-					setTimeout(() => {
-						this.toggleCooldown();
-					}, 250);
-					this.changeInstrumentFromDelta(1);
-				}
+			var wristRotation1 = Math.abs(frame.hands[0].roll());
+			var wristRotation2 = Math.abs(frame.hands[1].roll());
+			wristRotation1 = scale(0, Math.PI, 0, 360, wristRotation1);
+			wristRotation2 = scale(0, Math.PI, 0, 360, wristRotation2);
 
-				if (frame.hands[0].palmVelocity[0] < -800 && frame.hands[0].palmVelocity[0] < -800){
-					console.log("Swiped left");
+			console.log(wristRotation1 + " " + wristRotation2);
+			if (wristRotation1 > 150 && wristRotation2 > 150)
+			{
+				console.log("here");
+				this.toggleCooldown();
+				setTimeout(() => {
 					this.toggleCooldown();
-					setTimeout(() => {
-						this.toggleCooldown();
-					}, 250);
-					this.changeInstrumentFromDelta(-1);
-				}
+				}, 1000);
+				this.changeInstrumentFromDelta(-1);
 			}
+
 		}
+
+
+
+
 	}
+
 
 	play(instrumentData) {
 		this.memberData.instrument.play(instrumentData);
@@ -56,15 +58,15 @@ class Member {
 	}
 
 	update(memberData) {
-		console.log('update()');
-		console.log(memberData);
+		// console.log('update()');
+		// console.log(memberData);
 		this.memberData = memberData;
 		return this.changeInstrument(memberData.instrumentName);
 	}
 
 	changeInstrument(instrumentName) {
 		if (instrumentName in this.instruments && (!('instrument' in this.memberData) || instrumentName !== this.memberData.instrument.name)) {
-			console.log('Created instrument: ' + instrumentName);
+			// console.log('Created instrument: ' + instrumentName);
 			this.memberData.instrument = new this.instruments[instrumentName](socket);
 			this.memberData.instrument.name = instrumentName;
 			this.memberData.instrumentName = instrumentName;
@@ -91,8 +93,8 @@ class Member {
 
 		let newName = this.instrumentNames[this.instrumentId];
 
-		console.log('instrumentId: ' + this.instrumentId);
-		console.log('instrumentName: ' + newName);
+		// console.log('instrumentId: ' + this.instrumentId);
+		// console.log('instrumentName: ' + newName);
 
 		// Update actual instrument name on the server
 		this.socket.emit('update_member', {

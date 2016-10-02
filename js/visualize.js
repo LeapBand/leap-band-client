@@ -1,5 +1,5 @@
 var drawCircle;
-
+var drawConcentric;
 var showInstrument;
 
 $( document ).ready(function() {
@@ -26,26 +26,36 @@ $( document ).ready(function() {
     canvas.width = width;
     canvas. height = height;
     var ctx = canvas.getContext("2d");
+    ctx.lineWidth = 8;
     var circles = {};
 
     function Circle(x,y, config) {
         var id = Math.random();
         circles[id] = this;
-        var i = 100;
+        var i = 200;
+
 
         this.draw = function() {
             ctx.beginPath();
             ctx.arc(x, y, i-2,0 , 2*Math.PI, false);
             var track = i/3;
-            ctx.fillStyle = config.color;
-            ctx.fill();
-            i--;
+            if (config.fill){
+                ctx.fillStyle = config.color;
+                ctx.fill();
+            }
+            else
+            {
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.stroke();
+            }
+            i -= config.rate || 1;
 
             if (track < 10) {
                 delete circles[id];
             }
         }
     }
+
 
      setInterval(function() {
         ctx.clearRect( 0 , 0 , canvas.width , canvas.height );
@@ -56,12 +66,18 @@ $( document ).ready(function() {
 
 
     drawCircle = function(config) {
+
         var x = Math.floor(Math.random() * width);
         var y = Math.floor(Math.random() * height);
         console.log("Drawing at X: " + x + " and Y: " + y);
-        var circle =new Circle(x, y, config);
-        circle.draw();
-    }
+        if (Object.keys(circles).length < 15){
+            var circle = new Circle(x, y, config);
+            circle.draw();
+
+        }
+
+
+    };
 
     showInstrument = function(instrumentName){
         $("#notifications").html(instrumentName).show().fadeOut(2000);
