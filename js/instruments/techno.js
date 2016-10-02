@@ -36,14 +36,14 @@ class Techno {
 
 	process(frame) {
 		frame.hands.forEach((hand, index) => {
-			// if (this.currentHand >= frame.hands.length) {
-			// 	this.currentHand = 0;
-			// }
-			// if (this.currentHand == index) {
-			// 	++this.currentHand;
-			// 	if (this.currentHand >= frame.hands.length) {
-			// 		this.currentHand = 0;
-			// 	}
+			if (this.currentHand >= frame.hands.length) {
+				this.currentHand = 0;
+			}
+			if (this.currentHand == index) {
+				++this.currentHand;
+				if (this.currentHand >= frame.hands.length) {
+					this.currentHand = 0;
+				}
 
 				var handX = hand.palmPosition[0],
 					handY = hand.palmPosition[1],
@@ -58,7 +58,10 @@ class Techno {
 
 				let currentTime = Date.now();
 				if (currentTime >= this.lastTime + this.delay) {
-					this.lastTime = currentTime;
+					// Only reset last time when on the last hand
+					if (index === frame.hands.length - 1) {
+						this.lastTime = currentTime;
+					}
 
 					// let freq = handY * 2 + 100;
 					let freq = scale(200, 600, 200, 1500, handY) * pitchAdjustment;
@@ -70,7 +73,7 @@ class Techno {
 						rate: rate
 					});
 				}
-			// }
+			}
 
 		});
 	}
