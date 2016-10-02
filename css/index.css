@@ -26,3 +26,9 @@ body {
 
 }
 
+#notifications{
+    text-align: center;
+    font-size: 90px;
+    display: none;
+}
+
