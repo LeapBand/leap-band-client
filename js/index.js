@@ -4,7 +4,7 @@ var band = new Band(socket);
 
 // taking info
 socket.on('play', function(data) {
-	console.log(data);
+	// console.log(data);
 	band.play(data);
 });
 
@@ -27,7 +27,7 @@ socket.on('member_left', function(data) {
 
 socket.emit('update_member', {
 	username: 'testuser',
-	instrumentName: 'piano'
+	instrumentName: 'techno'
 });
 
 band.watchInstrument(function(name) {
