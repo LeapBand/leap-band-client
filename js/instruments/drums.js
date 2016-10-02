@@ -2,6 +2,10 @@ class Drums {
 	constructor(socket) {
 		this.socket = socket;
 		this.handOnCooldown = {};
+		this.tom = T("audio", {load:"/data/lowTom.mp3"});
+		this.hiHat = T("audio", {load:"/data/hiHat.mp3"});
+		this.kick = T("audio", {load:"/data/kick.mp3"});
+		this.snare = T("audio", {load:"/data/snare.mp3"});
 		console.log("Creating drums");
 	}
 
@@ -41,7 +45,18 @@ class Drums {
 	}
 
 	play(data) {
-
+		if(data.type === "kick"){
+			this.kick.play();
+		}
+		else if(data.type === "tom"){
+			this.tom.play();
+		}
+		else if(data.type === "snare"){
+			this.snare.play();
+		}
+		else if(data.type === "hiHat"){
+			this.hiHat.play();
+		}
 	}
 
 	toggleCooldown(hand) {

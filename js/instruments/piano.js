@@ -1,6 +1,7 @@
 class Drums {
 	constructor() {
 		this.handOnCooldown = {};
+		this.note = T("sin");
 	}
 
 	process(frame) {
@@ -12,46 +13,46 @@ class Drums {
 
 				var data = {};
 				if (handX < -225 && handX > -250){
-					data.key = 130.813;
+					data.freq = 130.813;
 				}
 				else if (handX < -200){
-					data.key = 146.832;
+					data.freq = 146.832;
 				}
 				else if (handX < -175){
-					data.key = 164.814;
+					data.freq = 164.814;
 				}
 				else if (handX < -150){
-					data.key = 174.614;
+					data.freq = 174.614;
 				}
 				else if (handX < -125){
-					data.key = 194.998
+					data.freq = 194.998
 				}
 				else if (handX < -100){
-					data.key = 246.942
+					data.freq = 246.942
 				}
 				else if (handX < -75){
-					data.key = 261.626
+					data.freq = 261.626
 				}
 				else if (handX < -50){
-					data.key = 293.66
+					data.freq = 293.66
 				}
 				else if (handX < 50){
-					data.key = 329.628
+					data.freq = 329.628
 				}
 				else if (handX < 75){
-					data.key = 349.228
+					data.freq = 349.228
 				}
 				else if (handX < 125){
-					data.key = 391.995
+					data.freq = 391.995
 				}
 				else if (handX < 175){
-					data.key = 440.000
+					data.freq = 440.000
 				}
 				else if (handX < 200) {
-					data.key = 493.883
+					data.freq = 493.883
 				}
 				else if (handX < 225) {
-					data.key = 493.883
+					data.freq = 493.883
 				}
 
 				//sendInstrumentData(data);
@@ -66,7 +67,9 @@ class Drums {
 	}
 
 	play(data) {
-
+		this.note.set({freq:data.freq});
+		//this.note.set({mul:data.volume});
+		this.note.play();
 	}
 
 	toggleCooldown(hand) {
