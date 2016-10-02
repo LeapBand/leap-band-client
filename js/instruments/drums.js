@@ -2,10 +2,10 @@ class Drums {
 	constructor(socket) {
 		this.socket = socket;
 		this.handOnCooldown = {};
-		this.tom = T("audio", {load:"/data/lowTom.mp3"});
-		this.hiHat = T("audio", {load:"/data/hiHat.mp3"});
-		this.kick = T("audio", {load:"/data/kick.mp3"});
-		this.snare = T("audio", {load:"/data/snare.mp3"});
+		this.tom = T("audio", {load:"./data/lowTom.mp3"});
+		this.hiHat = T("audio", {load:"./data/hiHat.mp3"});
+		this.kick = T("audio", {load:"./data/kick.mp3"});
+		this.snare = T("audio", {load:"./data/snare.mp3"});
 		console.log("Creating drums");
 	}
 
