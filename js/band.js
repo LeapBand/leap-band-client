@@ -26,12 +26,16 @@ class Band {
 
 	updateMember(memberData) {
 
-		if (memberData.id in this.members) {
-			this.members[memberData.id].update(memberData.data);
-		}
-		else {
+		console.log('updateMember()');
+		console.log(memberData);
+
+		if (!(memberData.id in this.members)) {
 			this.members[memberData.id] = new Member(socket, memberData.data);
+			console.log('Adding new member');
 		}
+		this.members[memberData.id].update(memberData.data);
+
+		console.log(this.members);
 	}
 
 	removeMember(memberData) {

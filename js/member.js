@@ -28,12 +28,15 @@ class Member {
 	}
 
 	update(memberData) {
+		console.log('update()');
+		console.log(memberData);
 		this.memberData = memberData;
 		this.changeInstrument(memberData.instrumentName);
 	}
 
 	changeInstrument(instrumentName) {
 		if (instrumentName in this.instruments && (!('instrument' in this.memberData) || instrumentName !== this.memberData.instrument.name)) {
+			console.log('Created instrument: ' + instrumentName);
 			this.memberData.instrument = new this.instruments[instrumentName](socket);
 			this.memberData.instrument.name = instrumentName;
 		}
