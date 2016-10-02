@@ -40,7 +40,7 @@ class Drums {
 			var handX = hand.palmPosition[0],
 				handY = hand.palmPosition[1],
 				handZ = hand.palmPosition[2];
-			if (!this.alreadyPlayed[index] && hand.palmVelocity[1] < -400 && handY < drumPoint) {
+			if (!this.alreadyPlayed[index] && hand.palmVelocity[1] < -100 && handY < drumPoint) {
 				var data = {
 					instrument: 'drums',
 					volume: hand.palmVelocity[1],

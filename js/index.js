@@ -1,7 +1,6 @@
 var socket = io('http://localhost:3000');
 
 var band = new Band(socket);
-var myId = undefined;
 
 // taking info
 socket.on('play', function(data) {
@@ -12,8 +11,7 @@ socket.on('play', function(data) {
 var proc = function(frame, id) {};
 
 socket.on('initialize', function(data) {
-	myId = data.myId;
-	band.initialize(data.clients);
+	band.initialize(data.clients, data.myId);
 	proc = band.process;
 });
 
@@ -32,7 +30,10 @@ socket.emit('update_member', {
 	instrumentName: 'drums'
 });
 
+band.watchInstrument(function(name) {
+	console.log('Instrument changed: ' + name);
+});
 
 Leap.loop(function(frame) {
-	proc.call(band, frame, myId);
+	proc.call(band, frame);
 });

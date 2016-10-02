@@ -4,11 +4,18 @@ class Band {
 		this.members = {};
 	}
 
-	process(frame, memberId) {
-		this.members[memberId].process(frame);
+	watchInstrument(callback) {
+		this.instrumentChanged = callback;
 	}
 
-	initialize(members) {
+	process(frame) {
+		if (this.myId) {
+			this.members[this.myId].process(frame);
+		}
+	}
+
+	initialize(members, myId) {
+		this.myId = myId;
 		for (let memberId in members) {
 			let memberData = {
 				id: memberId,
@@ -25,7 +32,6 @@ class Band {
 	}
 
 	updateMember(memberData) {
-
 		console.log('updateMember()');
 		console.log(memberData);
 
@@ -33,7 +39,10 @@ class Band {
 			this.members[memberData.id] = new Member(socket, memberData.data);
 			console.log('Adding new member');
 		}
-		this.members[memberData.id].update(memberData.data);
+		let changed = this.members[memberData.id].update(memberData.data);
+		if (changed && memberData.id == this.myId && this.instrumentChanged) {
+			this.instrumentChanged(this.members[memberData.id].getInstrumentName());
+		}
 
 		console.log(this.members);
 	}

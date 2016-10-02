@@ -32,7 +32,7 @@ class Member {
 		console.log('update()');
 		console.log(memberData);
 		this.memberData = memberData;
-		this.changeInstrument(memberData.instrumentName);
+		return this.changeInstrument(memberData.instrumentName);
 	}
 
 	changeInstrument(instrumentName) {
@@ -40,6 +40,12 @@ class Member {
 			console.log('Created instrument: ' + instrumentName);
 			this.memberData.instrument = new this.instruments[instrumentName](socket);
 			this.memberData.instrument.name = instrumentName;
+			return true;
 		}
+		return false;
+	}
+
+	getInstrumentName() {
+		return this.memberData.instrument.name;
 	}
 }
