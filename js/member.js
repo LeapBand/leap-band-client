@@ -26,27 +26,26 @@ class Member {
 		this.memberData.instrument.process(frame);
 		if (frame.hands.length == 2 && !this.swapCooldown)
 		{
-			if (Math.abs(frame.hands[0].palmPosition[0] - frame.hands[1].palmPosition[0])< 150){
-				if (frame.hands[0].palmVelocity[0] > 800 && frame.hands[0].palmVelocity[0] > 800){
-					console.log("Swiped right");
-					this.toggleCooldown();
-					setTimeout(() => {
+			if (Math.abs(frame.hands[0].palmVelocity[1]) < 200 && Math.abs(frame.hands[0].palmVelocity[2]) < 200 && Math.abs(frame.hands[1].palmVelocity[1]) < 200 && Math.abs(frame.hands[1].palmVelocity[2]) < 200)
+				if (frame.hands[0].palmVelocity[0] > 400 && frame.hands[0].palmVelocity[0] > 400){
+						console.log("Swiped right");
 						this.toggleCooldown();
-					}, 250);
-					this.changeInstrumentFromDelta(1);
+						setTimeout(() => {
+							this.toggleCooldown();
+						}, 750);
+						this.changeInstrumentFromDelta(1);
 				}
 
-				if (frame.hands[0].palmVelocity[0] < -800 && frame.hands[0].palmVelocity[0] < -800){
-					console.log("Swiped left");
-					this.toggleCooldown();
-					setTimeout(() => {
-						this.toggleCooldown();
-					}, 250);
-					this.changeInstrumentFromDelta(-1);
-				}
+				// if (frame.hands[0].palmVelocity[0] < -500 && frame.hands[0].palmVelocity[0] < -500){
+				// 	console.log("Swiped left");
+				// 	this.toggleCooldown();
+				// 	setTimeout(() => {
+				// 		this.toggleCooldown();
+				// 	}, 1000);
+				// 	this.changeInstrumentFromDelta(-1);
+				// }
 			}
 		}
-	}
 
 	play(instrumentData) {
 		this.memberData.instrument.play(instrumentData);

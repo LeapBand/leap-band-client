@@ -122,6 +122,9 @@ class Guitar {
 				label: 'lastPlayed'
 			});
 		});
+
+		var drawConfig = {color: "#CE3424", fill: false, concentric: true};
+		drawCircle(drawConfig);
 	}
 
 	convertYToIndex(yPos, arraySize, minY, maxY) {
