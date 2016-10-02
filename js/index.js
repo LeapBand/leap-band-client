@@ -32,6 +32,7 @@ socket.emit('update_member', {
 
 band.watchInstrument(function(name) {
 	console.log('Instrument changed: ' + name);
+	showInstrument(name);
 });
 
 Leap.loop(function(frame) {

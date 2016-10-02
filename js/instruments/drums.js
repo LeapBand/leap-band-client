@@ -1,7 +1,6 @@
 class Drums {
 	constructor(socket) {
 		this.socket = socket;
-		this.handOnCooldown = {};
 		this.audio = {
 			tom: new Wad({source: './data/lowTom.wav'}),
 			hiHat: new Wad({source: './data/hiHat.wav'}),
