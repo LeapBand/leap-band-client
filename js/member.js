@@ -2,9 +2,9 @@ class Member {
 	constructor(socket, data) {
 		this.socket = socket;
 		this.instruments = {
-			drums: Drums
+			drums: Drums,
 			// piano: Piano,
-			// guitar: Guitar,
+			guitar: Guitar,
 		};
 
 		this.instrumentOrder = [
