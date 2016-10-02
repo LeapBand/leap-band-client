@@ -41,11 +41,17 @@ class Blues{
 	}
 
 	process(frame) {
+		let currentTime = Date.now();
+		let delay = 300;
 		frame.hands.forEach((hand, index) => {
 			var data = {};
-			this.delay = 300;
-			let currentTime = Date.now();
-			if(currentTime >= this.lastTime + this.delay){
+			if(currentTime >= this.lastTime + delay){
+
+				// Only reset last time when on the last hand
+				if (index === frame.hands.length - 1) {
+					this.lastTime = currentTime;
+				}
+
 				if(hand.type === "left"){
 					var lhX = hand.palmPosition[0],
 						lhY = hand.palmPosition[1],
@@ -84,7 +90,6 @@ class Blues{
 					this.socket.emit('play', data);
 
 				}
-				this.lastTime = currentTime;
 
 			}
 		});
