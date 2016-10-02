@@ -145,7 +145,7 @@ class Guitar {
 			});
 		});
 
-		var drawConfig = {color: "#CE3424", fill: false, concentric: true};
+		var drawConfig = {color: "#CE3424", fill: false, concentric: true, rate: .5};
 		drawCircle(drawConfig);
 	}
 

@@ -34,7 +34,7 @@ class Member {
 			wristRotation2 = scale(0, Math.PI, 0, 360, wristRotation2);
 
 			// console.log(wristRotation1 + " " + wristRotation2);
-			if (wristRotation1 > 150 && wristRotation2 > 150)
+			if (wristRotation1 > 170 && wristRotation2 > 170)
 			{
 				// console.log("here");
 				this.toggleCooldown();
