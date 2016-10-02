@@ -26,12 +26,13 @@ $( document ).ready(function() {
     canvas.width = width;
     canvas. height = height;
     var ctx = canvas.getContext("2d");
+    ctx.lineWidth = 8;
     var circles = {};
 
     function Circle(x,y, config) {
         var id = Math.random();
         circles[id] = this;
-        var i = 100;
+        var i = 200;
 
 
         this.draw = function() {
