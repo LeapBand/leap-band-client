@@ -3,18 +3,18 @@ class Member {
 		this.socket = socket;
 		this.instruments = {
 			drums: Drums,
-			piano: Piano
-			// guitar: Guitar,
-			// techno: Techno
+			piano: Piano,
+			guitar: Guitar,
+			techno: Techno
 		};
 
 		this.swapCooldown = false;
 
 		this.instrumentNames = [
 			'drums',
-			'piano'
-			// 'guitar',
-			// 'techno'
+			'piano',
+			'guitar',
+			'techno'
 		];
 		this.instrumentId = 0;
 
