@@ -5,20 +5,10 @@ class Guitar {
 			string: new Wad({
 				// source: './data/guitar/6thstring.wav',
 				source: 'sawtooth',
+				volume: 0.1,
 				pitch: 'E2',
-				// tuna   : {
-				// 	// Overdrive : {
-				// 	//     outputGain: 0.5,         //0 to 1+
-				// 	//     drive: 0.7,              //0 to 1
-				// 	//     curveAmount: 1,          //0 to 1
-				// 	//     algorithmIndex: 0,       //0 to 5, selects one of our drive algorithms
-				// 	//     bypass: 0
-				// 	// },
-				// },
-				// source: 'triangle',
-				// pitch: 'E1',
 				env: {
-					attack  : 0.2,  // Time in seconds from onset to peak volume.  Common values for oscillators may range from 0.05 to 0.3.
+					attack  : 0.1,  // Time in seconds from onset to peak volume.  Common values for oscillators may range from 0.05 to 0.3.
 			        decay   : 0.3,  // Time in seconds from peak volume to sustain volume.
 			        sustain : 0.2,  // Sustain volume level. This is a percent of the peak volume, so sensible values are between 0 and 1.
 			        hold    : .75, // Time in seconds to maintain the sustain volume level. If this is not set to a lower value, oscillators must be manually stopped by calling their stop() method.
@@ -27,7 +17,7 @@ class Guitar {
 				vibrato : { // A vibrating pitch effect.  Only works for oscillators.
 				        shape     : 'sawtooth', // shape of the lfo waveform. Possible values are 'sine', 'sawtooth', 'square', and 'triangle'.
 				        magnitude : 1,      // how much the pitch changes. Sensible values are from 1 to 10.
-				        speed     : 2,      // How quickly the pitch changes, in cycles per second.  Sensible values are from 0.1 to 10.
+				        speed     : 0.1,      // How quickly the pitch changes, in cycles per second.  Sensible values are from 0.1 to 10.
 				        attack    : 0       // Time in seconds for the vibrato effect to reach peak magnitude.
 				    },
 			})
