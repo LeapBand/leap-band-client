@@ -38,7 +38,7 @@ class Drums {
 				console.log(data);
 				this.toggleCooldown(hand.id);
 				setTimeout(() => {
-					toggleCooldown(hand.id)
+					this.toggleCooldown(hand.id)
 				}, 250);
 			}
 		});
