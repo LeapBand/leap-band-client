@@ -48,7 +48,7 @@ $( document ).ready(function() {
                 ctx.strokeStyle = '#FFFFFF';
                 ctx.stroke();
             }
-            i--;
+            i -= config.rate || 1;
 
             if (track < 10) {
                 delete circles[id];

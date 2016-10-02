@@ -110,7 +110,10 @@ class Piano {
 		// this.audio.stop();
 
 		// red circle
-		var drawConfig = {color: "#990000"};
+		var drawConfig = {
+			color: "#990000",
+			fill: true
+		};
 		drawCircle(drawConfig);
 	}
 }
